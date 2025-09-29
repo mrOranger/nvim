@@ -37,3 +37,8 @@ end
 
 vim.opt.rtp:prepend(path)
 
+require("lazy").setup({
+    { "rebelot/kanagawa.nvim", },
+})
+
+vim.cmd.colorscheme("kanagawa-wave")
