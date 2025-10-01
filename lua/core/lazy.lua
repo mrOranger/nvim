@@ -73,6 +73,32 @@ require("lazy").setup({
             "nvim-tree/nvim-web-devicons",
             "MunifTanjim/nui.nvim",
         },
+        config = function ()
+            vim.keymap.set("n", "<C-n>rr", ":Neotree filesystem revel right")
+            vim.keymap.set("n", "<C-n>rl", ":Neotree filesystem reveal left")
+
+            require("neo-tree").setup({
+                close_if_last_window = false,
+                popup_border_style = "NC",
+                enable_git_status = true,
+                default_component_configs = {
+                    indent = {
+                        indent_size = 2,
+                        padding = 1,
+                        with_markers = true,
+                        indent_marker = "|",
+                    },
+                },
+                filesystem = {
+                    filtered_items = {
+                        visible = true,
+                        hide_dotfiles = false,
+                        hide_gitignored = false,
+                        hide_ignored = false,
+                    },
+                },
+            })
+        end,
     },
     {
         "nvim-telescope/telescope.nvim",
