@@ -29,6 +29,35 @@ require("lazy").setup({
                 highlight = {
                     enabled = true,
                 },
+                incremental_selection = {
+                    enable = true,
+                    keymaps = {
+                        init_selection = "<Leader>ss",
+                        node_incremental = "<Leader>si",
+                        scope_incremental = "<Leader>sc",
+                        node_decremental = "<Leader>sd",
+                    },
+                },
+            })
+        end,
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        config = function ()
+            require("nvim-treesitter.configs").setup({
+                textobjects = {
+                    select = {
+                        enable = true,
+                        lookahead = true,
+                        keymaps = {
+                            ["fo"] = { query = "@function.outer", desc = "Select outer part of a function" },
+                            ["fi"] = { query = "@function.inner", desc = "Select inner part of a function" },
+                            ["co"] = { query = "@class.outer", desc = "Select outer part of a class" },
+                            ["ci"] = { query = "@class.inner", desc = "Select inner part of a class" },
+                        },
+                        include_surrounding_whitespace = true,
+                    },
+                },
             })
         end,
     },

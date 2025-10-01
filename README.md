@@ -31,6 +31,16 @@ require("lazy").setup({
 
 using `require` and `setup` we can indicate the set of dependencies that will be downloaded and installed by Lazy as a set of tables. Moreover, the `config` function is used as a callback to execute come once the dependency has been succesuflly installed.
 
+## Keybindings
+Inside [`keybindings.lua`](./lua/core/keybindings.lua) file, you can find all the keybindings of this project. To identify new keys from older once, I use the `<Space>` key as leader. Doing this, each new command must start by pressing `<Space>` before being executed. The complete list of the keys is the following:
+
+* `<Leader>q` is used to close the current NeoVim buffer, without saving.
+* `<Leader>Q` is used to force the closure of the current NeoVim buffer, without saving.
+* `<Leader>w` is used to write the current buffer.
+* `<Leader>W` is used to force writing of the current buffer.
+* `<Leader>x` is used to close all the open buffer.
+* `<Leader>X` is used to force closing all the open buffer. In a certain sense, this is a kill operation, forcing NeoVim to be closed completely.
+
 ## Plugins
 
 The most important part of this project is composed by the set of plugins that are installed and configurated. Thankfully, each dependency can be customized based on our need, moreover, I will describe the dependencies that I'm going to use and how can be customized.
@@ -57,3 +67,46 @@ Installing tree-sitter requires to add a new dependency to the list of those alr
 ```
 
 By default, tree-sitter indicates that the parsers defined with the `ensure_installed` field should always be included; any additional parser will be installed if specified inside this table. However, `auto_install` allows NeoVim to install automatically a new parser whenever an unknown syntax is read. Finally, using `highlight` we are enabling syntax hightling feature of tree-sitter. There are many different configurations that can be included in the previous one. However, the most importat thing to notice is that now, we can customize any part of the abstract syntax tree defined by tree-sitter.
+
+One of the most powerful feature of tree-sitter is the abiity to use the generated abstract syntax tree for code highlighting. In fact, using the `incremental_selection` field, we can bind some key combinations to select part of the code, referring to nodes of the abstract syntax tree. E.g.:
+
+```lua
+incremental_selection = {
+    enable = true,
+    keymaps = {
+        init_selection = "<Leader>ss",
+        node_incremental = "<Leader>si",
+        node_decremental = "<Leader>sd",
+    },
+},
+```
+
+* `init_selection = "<Leader>ss"` start the selection process of tree-sitter. `ss` -> "start selection";
+* `node_incremental = "<Leader>si"` increments the selection to the next node of the abstract syntax tree. `si` -> "selection increment".
+* `node_decremental = "<Leader>sd"` decrements the selection to the previous node of the abstract syntax tree. `sd` -> "selection decrement".
+
+Up to this point, tree-sitter offers powerful features to select in a smart way piece of the text. Moreover, we can use another plugin of tree-sitter known as [`nvim-treesitter-objects`](https://github.com/nvim-treesitter/nvim-treesitter-textobjects), implements additional smart movements inside the text. Just like the "normal" version of tree-sitter, inside the `config` function some additional options are passed:
+
+```lua
+textobjects = {
+    select = {
+        enable = true,
+        lookahead = true,
+        keymaps = {
+            ["fo"] = { query = "@function.outer", desc = "Select outer part of a function" },
+            ["fi"] = { query = "@function.inner", desc = "Select inner part of a function" },
+            ["co"] = { query = "@class.outer", desc = "Select outer part of a class" },
+            ["ci"] = { query = "@class.inner", desc = "Select inner part of a class" },
+        },
+        include_surrounding_whitespace = true,
+    },
+},
+```
+
+I will not focus on each of the following options, however, I will explain only the most important one, that is `keymaps`. Inside this table, we can define additional movements to combine with the normal NeoVim motions, to make the selection of specific part of the code easier. That is:
+
+* By pressing `fo` we select all the content of a function plus the outer content of itself.
+* `fi` is just like `fo` with the difference that only the inner part of a functon is selected.
+* Moreover, motions having with prefix `c` works in the same way but just for class objects, that is: `co` select all the class declaration; `ci` select just the inner part of a class declaration.
+
+
