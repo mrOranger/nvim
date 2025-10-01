@@ -25,6 +25,15 @@ require("lazy").setup({
             })
         end,
     },
+    {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        config = true,
+        disable_in_macro = true,
+        disable_in_visualblock = true,
+        disable_in_replace_mode = true,
+        enable_bracket_in_quote = true,
+    },
     { 
         "rebelot/kanagawa.nvim",
         disabled = false,
