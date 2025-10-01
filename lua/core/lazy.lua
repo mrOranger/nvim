@@ -16,19 +16,30 @@ vim.opt.rtp:prepend(path)
 require("lazy").setup({
     { 
         "rebelot/kanagawa.nvim",
+        disabled = false,
         config = function ()
-            vim.cmd.colorscheme("kanagawa-dragon")
+            vim.cmd.colorscheme("kanagawa")
         end,
     },
     {
-        "nvim-treesitter/nvim-treesitter",
+        "catppuccin/nvim",
+        disabled = true,
+        config = function ()
+            vim.cmd.colorscheme("catppuccin-mocha")
+        end,
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
         config = function ()
             require("nvim-treesitter.configs").setup({
                 ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
                 auto_install = true,
-                highlight = {
-                    enabled = true,
-                },
+                sync_install = true,
+                highlight = { enabled = true, },
+                indent = { enabled = true },
                 incremental_selection = {
                     enable = true,
                     keymaps = {
@@ -38,17 +49,11 @@ require("lazy").setup({
                         node_decremental = "<Leader>sd",
                     },
                 },
-            })
-        end,
-    },
-    {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        config = function ()
-            require("nvim-treesitter.configs").setup({
                 textobjects = {
                     select = {
                         enable = true,
                         lookahead = true,
+                        disabled = false,
                         keymaps = {
                             ["fo"] = { query = "@function.outer", desc = "Select outer part of a function" },
                             ["fi"] = { query = "@function.inner", desc = "Select inner part of a function" },
@@ -62,15 +67,25 @@ require("lazy").setup({
         end,
     },
     {
-        "nvim-telescope/telescope.nvim",
-        dependencies = { "nvim-lua/plenary.nvim", },
-        config = function ()
-            local builtin = require("telescope.builtin")
-
-            vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
-            vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-        end,
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+            "MunifTanjim/nui.nvim",
+        },
     },
     {
+        "nvim-telescope/telescope.nvim",
+        tag = "0.1.8",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function ()
+            local builtin = require('telescope.builtin')
+
+            vim.keymap.set("n", "<C-t>ff", builtin.find_files)
+            vim.keymap.set("n", "<C-t>lg", builtin.live_grep)
+            vim.keymap.set("n", "<C-t>c", builtin.colorscheme)        
+            vim.keymap.set("n", "<C-t>gc", builtin.git_commits)
+            vim.keymap.set("n", "<C-t>gb", builtin.git_branches)
+        end,
     },
 })
