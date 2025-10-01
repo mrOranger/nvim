@@ -14,6 +14,17 @@ end
 vim.opt.rtp:prepend(path)
 
 require("lazy").setup({
+    {
+        "nvim-lualine/lualine.nvim",
+        config = function ()
+            require("lualine").setup({
+                options = {
+                    theme = "catppuccin",
+                    icons_enabled = true,
+                }
+            })
+        end,
+    },
     { 
         "rebelot/kanagawa.nvim",
         disabled = false,
