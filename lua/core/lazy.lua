@@ -15,6 +15,15 @@ vim.opt.rtp:prepend(path)
 
 require("lazy").setup({
     {
+        "goolord/alpha-nvim",
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+        },
+        config = function ()
+            require("alpha").setup(require("alpha.themes.dashboard").config)
+        end,
+    },
+    {
         "nvim-lualine/lualine.nvim",
         config = function ()
             require("lualine").setup({
