@@ -15,6 +15,12 @@ vim.opt.rtp:prepend(path)
 
 require("lazy").setup({
     {
+        "kylechui/nvim-surround",
+        config = function ()
+            require("nvim-surround").setup()
+        end,
+    },
+    {
         "lewis6991/gitsigns.nvim",
         config = function ()
             require("gitsigns").setup({
