@@ -1,7 +1,7 @@
 # NeoVim
 
 <div style="display: flex; flex-direction: row; justify-content: center; align-items: center">
-    <img src="./assets/nvim-logo.png" alt="NeoVim Logo" style="width: 100%"/>
+    <img src="./assets/NeoVim.png" alt="NeoVim Logo" style="width: 100%"/>
 </div>
 
 NeoVim is an open-source code editor based on [Vim](https://www.vim.org/), and made using [Lua](https://www.lua.org/). NeoVim is not ad IDE, thus, it does not offer any additional feature rather than code editing. On the other hand, it is fully customizable, therefore is an interesting starting point to create a flexible and comfortable endivorniment for development. Moreover, I think that using a code editor rather than an IDE is a better approach to develop and learn new programming' skills. In fact, it is quite simple to import a dependencies pressing a code action button, or using auto-completion rather than remembering keywords or istructions' names. 
