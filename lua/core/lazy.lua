@@ -60,7 +60,7 @@ require("lazy").setup({
         disable_in_replace_mode = true,
         enable_bracket_in_quote = true,
     },
-    { 
+    {
         "rebelot/kanagawa.nvim",
         disabled = false,
         config = function ()
@@ -155,9 +155,38 @@ require("lazy").setup({
 
             vim.keymap.set("n", "<C-t>ff", builtin.find_files)
             vim.keymap.set("n", "<C-t>lg", builtin.live_grep)
-            vim.keymap.set("n", "<C-t>c", builtin.colorscheme)        
+            vim.keymap.set("n", "<C-t>c", builtin.colorscheme)
             vim.keymap.set("n", "<C-t>gc", builtin.git_commits)
             vim.keymap.set("n", "<C-t>gb", builtin.git_branches)
+            vim.keymap.set("n", "<C-t>sd", builtin.diagnostics)
+        end,
+    },
+    {
+        "williamboman/mason-lspconfig.nvim",
+        dependencies = {
+            "neovim/nvim-lspconfig",
+            "williamboman/mason.nvim",
+        },
+        config = function ()
+            require("mason").setup({})
+            require("mason-lspconfig").setup()
+
+            vim.diagnostic.config({
+                virtual_text = {
+                    prefix = '●',
+                    source = 'if_many',
+                },
+                signs = true,
+                underline = true,
+                update_in_insert = false,
+                severity_sort = true,
+                float = {
+                    source = 'always',
+                    border = 'rounded',
+                    header = '',
+                    prefix = '',
+                },
+            })
         end,
     },
 })
