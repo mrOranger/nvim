@@ -175,20 +175,8 @@ require("lazy").setup({
             require("mason-lspconfig").setup()
 
             vim.diagnostic.config({
-                virtual_text = {
-                    prefix = '●',
-                    source = 'if_many',
-                },
-                signs = true,
-                underline = true,
-                update_in_insert = false,
-                severity_sort = true,
-                float = {
-                    source = 'always',
-                    border = 'rounded',
-                    header = '',
-                    prefix = '',
-                },
+                virtual_text = true,
+                virtual_line = true,
             })
         end,
     },
@@ -200,9 +188,27 @@ require("lazy").setup({
            keyamp = { present = "super-tab" },
            appearance = { nerd_font_variant = "mono" },
            completion = { documentation = { auto_show = true } },
-           sources = { default = { "lsp", "path", "snippets", "buffer" }},
            fuzzy = { implementation = "prefer_rust_with_warning" },
+           sources = {
+               default = { "lsp", "path", "snippets", "buffer" },
+               providers = {
+                   lazydev = {
+                       name = "LazyDev",
+                       module = "lazydev.integrations.blink",
+                       score_offset = 100,
+                   },
+               },
+           },
        },
        opts_extend = { "sources.default" },
+    },
+    {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+            library = {
+                { path = "${3rd}/luv/library", words = { "vim%.uv" }}
+            },
+        },
     },
 })
