@@ -9,6 +9,7 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.colorcolumn = "120"
+vim.opt.textwidth = 120
 vim.opt.updatetime = 250
 
 vim.opt.clipboard = "unnamedplus"
@@ -27,3 +28,4 @@ vim.opt.smartindent = true
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
+vim.opt.fillchars = { eob = " " }
