@@ -1,112 +1,101 @@
-# NeoVim
 
-<div style="display: flex; flex-direction: row; justify-content: center; align-items: center">
-    <img src="./assets/NeoVim.png" alt="NeoVim Logo" style="width: 100%"/>
+<div style = "width: 100%; height: fit-content; display: flex; justify-content: center; align-items: center">
+    <img 
+        src = "./assets/NeoVim.png" 
+        alt = "NeoVim Logo" 
+        style = "width: 30%; height: 30%; max-width: 200px; min-width: 100px; margin: 2em 4em" />
 </div>
 
-NeoVim is an open-source code editor based on [Vim](https://www.vim.org/), and made using [Lua](https://www.lua.org/). NeoVim is not ad IDE, thus, it does not offer any additional feature rather than code editing. On the other hand, it is fully customizable, therefore is an interesting starting point to create a flexible and comfortable endivorniment for development. Moreover, I think that using a code editor rather than an IDE is a better approach to develop and learn new programming' skills. In fact, it is quite simple to import a dependencies pressing a code action button, or using auto-completion rather than remembering keywords or istructions' names. 
+#### Setup 
 
-If you are using a UNIX system, you can easily install Neovim using [Homebrew](https://brew.sh/) (if you are working with a Mac) or APT (if you are working with Linux). Once NeoVim has been installed, any customization is made using Lua, by placing the configuration's files inside `~/.config/nvim` folder. Which is the main folder where NeoVim will looking for configuration's files.  
+Before download and install this project, please <u>ensure you have a C compiler installed successfully in your 
+device</u>, and a NeoVim distribution. This project has been <u>created with the `0.11` version of NeoVim</u> (you can
+check the version of your NeoVim distribution using `nvim --version` command). Once you are sure about the 
+previous requirements, you can install this project in these steps:
 
-I won't focus on Lua and Vim, therefore, I'm going to describe how the repository is made, and the main files that togheter compose the whole configuration. The entrypoint is [init.lua](.init.lua); in Lua, each `init.lua` file is the first file that will be executed inside the folder. In a certain sense it can be compared with Typescript barrel files. 
+1. Clone the content of this repository through `git clone https://github.com/mrOranger/nvim` 
+    inside the `~/.config/nvim` folder.
 
-Inside the `init.lua` using the `require` keyword we are importing some dependencies: 
-* [`options.lua`](./lua/core/options.lua), where Vim's default options are updated using the global table variable `vim` through the `opt` item:
-* Inside [`lazy.lua`](./lua/code/lazy.lua) there is the Lazy package manager definition;
+2. Run your NeoVim installation `nvim`. Then, all the dependencies and packages will be automatically installed by Lazy
+    package manager.
 
-## Lazy Package Manager
+# Introduction
 
-Theare are many different package managers development for NeoVim, on the other hand I will use [`lazy.nvim`](https://github.com/folke/lazy.nvim). The file [`lazy.lua`](./lua/core/lazy.lua) contains the basis instructions to setup Lazy, however, the most important part of this file is represented by the following instruction:
+What is the difference between __Vi__, __Vim__ and __NeoVim__? Why shall we use a raw code editor like __NeoVim__, rather 
+a than fully features IDE just like those my by __JetBrains__ or a more completed code editor such as __VsCode__? If you
+would like to know an answer to these questions you are in the right place. 
 
-```lua
-require("lazy").setup({
-    { 
-        "rebelot/kanagawa.nvim",
-        config = function ()
-            vim.cmd.colorscheme("kanagawa-wave")
-        end,
-    },
-})
-```
+In this repository, we will have a look on __NeoVim__, and I will share with you my personal configuration. Moreover, I
+will not limit myself to share the code and nothing more, insted, in this repository we will have a look on each
+plugin that I chose, and how they actually interact each other. 
 
-using `require` and `setup` we can indicate the set of dependencies that will be downloaded and installed by Lazy as a set of tables. Moreover, the `config` function is used as a callback to execute come once the dependency has been succesuflly installed.
+Before starting with a short introduction in the historical background of __Vim__ and __NeoVim__, I would like to share 
+with you a personal tought about __NeoVim__. In my daily work, I always use __VsCode__ or __IntelliJ__, however, 
+sometimes I think that those powerfull instruments, makes too easy our developments' lifes, making ourselves "lazy" in
+such a way. It is easy to press a single button to compile and run your C code, or importing a library, however, 
+we do not have any idea about which command is used to make a task just like compiling our code, or we do not ask
+ourself: "Why is this component inside `@angular/core` rather than in another place?". Moreover, I'm a fan of the
+[UNIX Phylosophy](https://en.wikipedia.org/wiki/Unix_philosophy) and the qoute "Make one thing and make I good", thus,
+I prefer to have a minimal setup, rather than a tons of features that I will not probably quite often, and when I 
+discovered __Vim__ first and __NeoVim__ latter, I though that it was a good idea to invest some time to learn this code 
+editor.
 
-## Keybindings
-Inside [`keybindings.lua`](./lua/core/keybindings.lua) file, you can find all the keybindings of this project. To identify new keys from older once, I use the `<Space>` key as leader. Doing this, each new command must start by pressing `<Space>` before being executed. The complete list of the keys is the following:
+Last but not least, I reccomend to you to have a look on these videos, that inspired me in making this repository:
 
-* `<Leader>q` is used to close the current NeoVim buffer, without saving.
-* `<Leader>Q` is used to force the closure of the current NeoVim buffer, without saving.
-* `<Leader>w` is used to write the current buffer.
-* `<Leader>W` is used to force writing of the current buffer.
-* `<Leader>x` is used to close all the open buffer.
-* `<Leader>X` is used to force closing all the open buffer. In a certain sense, this is a kill operation, forcing NeoVim to be closed completely.
+* [Understanding NeoVim](https://www.youtube.com/watch?v=87AXw9Quy9U&list=PLx2ksyallYzW4WNYHD9xOFrPRYGlntAfté).
+* [From 0 to IDE in NEOVIM from scratch](https://www.youtube.com/watch?v=zHTeCSVAFNY&list=PLsz00TDipIffreIaUNk64KxTIkQaGguqn&index=1&t=892s)
 
-## Plugins
+## Historical Background
 
-The most important part of this project is composed by the set of plugins that are installed and configurated. Thankfully, each dependency can be customized based on our need, moreover, I will describe the dependencies that I'm going to use and how can be customized.
+While __NeoVim__ is born in 2014, it is based on a older code editor known as [__Vi__](https://it.wikipedia.org/wiki/Vi_(software)). __Vi__ is born in 1976, made by [Bill Joy](https://it.wikipedia.org/wiki/Bill_Joy) and can be considered one of the
+first visual editor ever made. However, the __Vim__ and __NeoVim__ motions `hjkl` used to navigate through the code are 
+inherited just by __Vi__. In fact, in the earlier keyboard models used in devices where __Vi__ was installed, 
+the arrows have not been used yet, therefore, to move around the text, they were encoded inside the `hjkl` keys.
 
-### Tree-sitter
+In 1991, [__Vim__](https://en.wikipedia.org/wiki/Vim_(text_editor)) is born. New features were included, and 
+improvements were made respect to __Vi__. In fact, __Vim__ will be adopted as pre-installed code editor in most of UNIX
+systems, and even in __DOS__. However, since __Vim__ is an open-source project born from __Vi__,it contains a lot of 
+integrations and plugins for older and no more used architectures.
 
-Tree-sitter is a parser used to create syntax-tree of current file, capable of updating the abstract syntax tree while the file is updated. NeoVim includes Tree-sitter in its default configuration, however, in order to use it with other parsers, we have to include the [`nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter) plugin. 
+Finally, in 2014 __NeoVim__ was released. Respect to __Vim__, __NeoVim__ focuses on re-write most of __Vim__ 
+capabilities, using [__Lua__](https://en.wikipedia.org/wiki/Lua). Moreover, __NeoVim__ contains a native support 
+for [__Tresitter__](https://en.wikipedia.org/wiki/Tree-sitter_(parser_generator)), and just like __VsCode__, 
+it supports [__LSP__](https://en.wikipedia.org/wiki/Language_Server_Protocol) and 
+[__DAP__](https://microsoft.github.io/debug-adapter-protocol//) protocols.
 
-Installing tree-sitter requires to add a new dependency to the list of those already defined inside Lazy configuration file. Moreover, tree-sitter is not enabled by default, therefore, we have to include some instructions inside the `config` callback:
+## Plugins and Configuration
 
-```lua
-{
-    "nvim-treesitter/nvim-treesitter",
-    config = function ()
-        require("nvim-treesitter.configs").setup({
-            ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
-            auto_install = true,
-            highlight = {
-                enabled = true,
-            },
-        })
-    end,
-},
-```
+In this section, we are going to analyse the installed dependencies and the Vim options that have been used for this
+distribution. An exhaustive list of the installed packages is the following:
 
-By default, tree-sitter indicates that the parsers defined with the `ensure_installed` field should always be included; any additional parser will be installed if specified inside this table. However, `auto_install` allows NeoVim to install automatically a new parser whenever an unknown syntax is read. Finally, using `highlight` we are enabling syntax hightling feature of tree-sitter. There are many different configurations that can be included in the previous one. However, the most importat thing to notice is that now, we can customize any part of the abstract syntax tree defined by tree-sitter.
+* [Lazy](https://github.com/folke/lazy.nvim?tab=readme-ov-file) is a plugin mananger for NeoVim. There are many others
+  plugin managers, such as: [Packer](https://github.com/wbthomason/packer.nvim); or [Vim-Plug](https://github.com/junegunn/vim-plug); however, is a mine personal preferences to use Lazy instead of another.
 
-One of the most powerful feature of tree-sitter is the abiity to use the generated abstract syntax tree for code highlighting. In fact, using the `incremental_selection` field, we can bind some key combinations to select part of the code, referring to nodes of the abstract syntax tree. E.g.:
+* [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter). As I mentioned before, NeoVim includes a native
+  installation of TreeSitter, however, this package is used to simplify the interaction between the code editor and the
+  syntax parser.
 
-```lua
-incremental_selection = {
-    enable = true,
-    keymaps = {
-        init_selection = "<Leader>ss",
-        node_incremental = "<Leader>si",
-        node_decremental = "<Leader>sd",
-    },
-},
-```
+* I love [Telescope](https://github.com/nvim-telescope/telescope.nvim), in fact, one of the main reason that lead me to
+  use NeoVim rather than Vim or VsCode was this plugin.
 
-* `init_selection = "<Leader>ss"` start the selection process of tree-sitter. `ss` -> "start selection";
-* `node_incremental = "<Leader>si"` increments the selection to the next node of the abstract syntax tree. `si` -> "selection increment".
-* `node_decremental = "<Leader>sd"` decrements the selection to the previous node of the abstract syntax tree. `sd` -> "selection decrement".
+* [NeoTree](https://github.com/nvim-neo-tree/neo-tree.nvim) is a file explorer that you can use to navigate from the
+  file inside of the current project.
 
-Up to this point, tree-sitter offers powerful features to select in a smart way piece of the text. Moreover, we can use another plugin of tree-sitter known as [`nvim-treesitter-objects`](https://github.com/nvim-treesitter/nvim-treesitter-textobjects), implements additional smart movements inside the text. Just like the "normal" version of tree-sitter, inside the `config` function some additional options are passed:
+* Navigation between some specific file is made easier using [Harpoon](https://github.com/ThePrimeagen/harpoon).
 
-```lua
-textobjects = {
-    select = {
-        enable = true,
-        lookahead = true,
-        keymaps = {
-            ["fo"] = { query = "@function.outer", desc = "Select outer part of a function" },
-            ["fi"] = { query = "@function.inner", desc = "Select inner part of a function" },
-            ["co"] = { query = "@class.outer", desc = "Select outer part of a class" },
-            ["ci"] = { query = "@class.inner", desc = "Select inner part of a class" },
-        },
-        include_surrounding_whitespace = true,
-    },
-},
-```
+* LSP is managed by [Mason](https://github.com/mason-org/mason.nvim) and [mason-lspconfig](https://github.com/mason-org/mason-lspconfig.nvim) packages.
 
-I will not focus on each of the following options, however, I will explain only the most important one, that is `keymaps`. Inside this table, we can define additional movements to combine with the normal NeoVim motions, to make the selection of specific part of the code easier. That is:
+* Using LSP with a code completion creates a better user experience. The completion engine that I choose is [Blink](https://github.com/Saghen/blink.cmp).
 
-* By pressing `fo` we select all the content of a function plus the outer content of itself.
-* `fi` is just like `fo` with the difference that only the inner part of a functon is selected.
-* Moreover, motions having with prefix `c` works in the same way but just for class objects, that is: `co` select all the class declaration; `ci` select just the inner part of a class declaration.
+These are the main packages of this configuration. However, additional packages are used for layout and enhance the
+coding experience: [Alpha](https://github.com/goolord/alpha-nvim) shows a pretty splash page when NeoVim in started;
+[Autopairs](https://github.com/windwp/nvim-autopairs) close automatically a brackets once it is opened; Interaction
+between Git and NeoVim is made easier with [git-signs](https://github.com/lewis6991/gitsigns.nvim), in fact, you will
+notice that guidelines in the left-hand side of the current buffer are shown to indicate the added and removed part of
+the file from the previous version; [Lualine](https://github.com/nvim-lualine/lualine.nvim) display a prettier bottom
+bar including some information about the curren buffer; Surround pieces of code authomatically is managed by
+[nvim-surround](https://github.com/kylechui/nvim-surround).
 
+Last but not list, some colorschemes have been places inside the [`colorscheme`](./lua/core/plugins/colorschemes)
+folder. If you are interested in installing a new colorscheme, check this [link](https://github.com/topics/neovim-colorscheme).
 
