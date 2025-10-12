@@ -26,21 +26,21 @@ a than fully features IDE just like those my by __JetBrains__ or a more complete
 would like to know an answer to these questions you are in the right place. 
 
 In this repository, we will have a look on __NeoVim__, and I will share with you my personal configuration. Moreover, I
-will not limit myself to share the code and nothing more, insted, in this repository we will have a look on each
+will not limit myself to share the code and nothing more, instead, in this repository we will have a look on each
 plugin that I chose, and how they actually interact each other. 
 
 Before starting with a short introduction in the historical background of __Vim__ and __NeoVim__, I would like to share 
-with you a personal tought about __NeoVim__. In my daily work, I always use __VsCode__ or __IntelliJ__, however, 
-sometimes I think that those powerfull instruments, makes too easy our developments' lifes, making ourselves "lazy" in
+with you a personal thought about __NeoVim__. In my daily work, I always use __VsCode__ or __IntelliJ__, however, 
+sometimes I think that those powerful instruments, makes too easy our developments' lives, making ourselves "lazy" in
 such a way. It is easy to press a single button to compile and run your C code, or importing a library, however, 
 we do not have any idea about which command is used to make a task just like compiling our code, or we do not ask
 ourself: "Why is this component inside `@angular/core` rather than in another place?". Moreover, I'm a fan of the
-[UNIX Phylosophy](https://en.wikipedia.org/wiki/Unix_philosophy) and the qoute "Make one thing and make I good", thus,
+[UNIX Philosophy](https://en.wikipedia.org/wiki/Unix_philosophy) and the quote "Make one thing and make I good", thus,
 I prefer to have a minimal setup, rather than a tons of features that I will not probably quite often, and when I 
 discovered __Vim__ first and __NeoVim__ latter, I though that it was a good idea to invest some time to learn this code 
 editor.
 
-Last but not least, I reccomend to you to have a look on these videos, that inspired me in making this repository:
+Last but not least, I recommend to you to have a look on these videos, that inspired me in making this repository:
 
 * [Understanding NeoVim](https://www.youtube.com/watch?v=87AXw9Quy9U&list=PLx2ksyallYzW4WNYHD9xOFrPRYGlntAfté).
 * [From 0 to IDE in NEOVIM from scratch](https://www.youtube.com/watch?v=zHTeCSVAFNY&list=PLsz00TDipIffreIaUNk64KxTIkQaGguqn&index=1&t=892s)
@@ -59,16 +59,16 @@ integrations and plugins for older and no more used architectures.
 
 Finally, in 2014 __NeoVim__ was released. Respect to __Vim__, __NeoVim__ focuses on re-write most of __Vim__ 
 capabilities, using [__Lua__](https://en.wikipedia.org/wiki/Lua). Moreover, __NeoVim__ contains a native support 
-for [__Tresitter__](https://en.wikipedia.org/wiki/Tree-sitter_(parser_generator)), and just like __VsCode__, 
+for [__Treesitter__](https://en.wikipedia.org/wiki/Tree-sitter_(parser_generator)), and just like __VsCode__, 
 it supports [__LSP__](https://en.wikipedia.org/wiki/Language_Server_Protocol) and 
 [__DAP__](https://microsoft.github.io/debug-adapter-protocol//) protocols.
 
 ## Plugins and Configuration
 
-In this section, we are going to analyse the installed dependencies and the Vim options that have been used for this
+In this section, we are going to analyst the installed dependencies and the Vim options that have been used for this
 distribution. An exhaustive list of the installed packages is the following:
 
-* [Lazy](https://github.com/folke/lazy.nvim?tab=readme-ov-file) is a plugin mananger for NeoVim. There are many others
+* [Lazy](https://github.com/folke/lazy.nvim?tab=readme-ov-file) is a plugin manager for NeoVim. There are many others
   plugin managers, such as: [Packer](https://github.com/wbthomason/packer.nvim); or [Vim-Plug](https://github.com/junegunn/vim-plug); however, is a mine personal preferences to use Lazy instead of another.
 
 * [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter). As I mentioned before, NeoVim includes a native
@@ -93,9 +93,8 @@ coding experience: [Alpha](https://github.com/goolord/alpha-nvim) shows a pretty
 between Git and NeoVim is made easier with [git-signs](https://github.com/lewis6991/gitsigns.nvim), in fact, you will
 notice that guidelines in the left-hand side of the current buffer are shown to indicate the added and removed part of
 the file from the previous version; [Lualine](https://github.com/nvim-lualine/lualine.nvim) display a prettier bottom
-bar including some information about the curren buffer; Surround pieces of code authomatically is managed by
+bar including some information about the curren buffer; Surround pieces of code automatically is managed by
 [nvim-surround](https://github.com/kylechui/nvim-surround).
 
-Last but not list, some colorschemes have been places inside the [`colorscheme`](./lua/core/plugins/colorschemes)
+Last but not list, some colorscheme have been places inside the [`colorscheme`](./lua/core/plugins/colorschemes)
 folder. If you are interested in installing a new colorscheme, check this [link](https://github.com/topics/neovim-colorscheme).
-

@@ -9,12 +9,10 @@ return {
         },
         config = function ()
             require("mason").setup({})
-            require("mason-lspconfig").setup()
-
             vim.diagnostic.config({
                 virtual_text = true,
                 virtual_line = true,
             })
         end,
-    },
+    }
 }
