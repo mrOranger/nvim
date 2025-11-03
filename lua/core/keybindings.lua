@@ -1,7 +1,8 @@
 vim.g.mapleader = " "
 
 vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "Quit" })
-vim.keymap.set("n", "<leader>Q", ":qa!<CR>", { desc = "Quit Without Save" })
+vim.keymap.set("n", "<leader>x", ":q!<CR>", { desc = "Quit current buffer without save" })
+vim.keymap.set("n", "<leader>X", ":qa!<CR>", { desc = "Quit all buffers without save"} )
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Write" })
 vim.keymap.set("n", "<leader>W", ":wa!<CR>", { desc = "Force Write" })
 vim.keymap.set("n", "<leader>s", ":%s/", { desc = "Find an replace" })
