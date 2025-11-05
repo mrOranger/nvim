@@ -60,9 +60,9 @@ return {
                     description = "Open Telescope file finder",
                 },
                 {
-                    name = "Telescope live_grep",
-                    cmd = "Telescope live_grep",
-                    description = "Open Telescope live grep function",
+                    name = "Telescope Fuzzy Find",
+                    cmd = "Telescope current_buffer_fuzzy_find",
+                    description = "Open Telescope finder function",
                 },
                 {
                     name = "Harpoon list():add()",
