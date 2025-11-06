@@ -31,3 +31,5 @@ vim.opt.fillchars = { eob = " " }
 
 vim.opt.spell = true                -- Enable Language Spell Check
 vim.opt.spelllang = { 'it', 'en' }  -- Set Language Spell 'it' and 'en'
+
+vim.opt.cmdheight = 0               -- Hide Cmd
