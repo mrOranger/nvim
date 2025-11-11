@@ -133,7 +133,8 @@ return {
 
             end
 
-            vim.keymap.set("n", "<C-p>", run)
+            vim.keymap.set("n", "<leader>p", builtin.buffers)
+            vim.keymap.set("n", "<leader>P", run)
 
             vim.keymap.set("n", "<C-t>ff", builtin.find_files)
             vim.keymap.set("n", "<C-t>lg", builtin.live_grep)
