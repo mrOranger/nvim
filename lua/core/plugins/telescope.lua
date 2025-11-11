@@ -15,67 +15,67 @@ return {
 
             local custom_commands = {
                 {
-                    name = "w!",
+                    name = "Force to save current buffer",
                     cmd = "w!",
                     description = "Force to save the current buffer",
                 },
                 {
-                    name = "wa!",
+                    name = "Force to save all buffers",
                     cmd = "wa!",
                     description = "Force to save all buffers",
                 },
                 {
-                    name = "q!",
+                    name = "Force to close current buffer",
                     cmd = "q!",
                     description = "Force to close current buffer",
                 },
                 {
-                    name = "qa!",
+                    name = "Force to close all buffers",
                     cmd = "qa!",
                     description = "Force to close all buffers",
                 },
                 {
-                    name = "wq!",
+                    name = "Force to save and close current buffer",
                     cmd = "wq!",
                     description = "Force to save and close current buffer",
                 },
                 {
-                    name = "wqa!",
+                    name = "Force to save and close all buffers",
                     cmd = "wqa!",
                     description = "Force to save and close all buffers",
                 },
                 {
-                    name = "InspectTr",
+                    name = "Display Syntax Tree",
                     cmd = "InspectTr",
                     description = "Display TreeSitter abstract syntax tree",
                 },
                 {
-                    name = "Telescope colorscheme",
+                    name = "Change Telescope Colorscheme",
                     cmd = "Telescope colorscheme",
                     description = "Change current colorscheme",
                 },
                 {
-                    name = "Telescope find_files",
+                    name = "Find File",
                     cmd = "Telescope find_files",
                     description = "Open Telescope file finder",
                 },
                 {
-                    name = "Telescope Fuzzy Find",
+                    name = "Find in current file",
                     cmd = "Telescope current_buffer_fuzzy_find",
                     description = "Open Telescope finder function",
                 },
                 {
-                    name = "Harpoon list():add()",
+                    name = "Select current file with Harpoon",
                     cmd = "lua require('harpoon').setup():list():add()",
                     description = "Select current file with Harpoon",
                 },
                 {
-                    name = "Harpoon list():remove()",
+                    name = "Remove current file from Harpoon",
                     cmd = "lua require('harpoon').setup():list():remove()",
                     description = "Remove current file from Harpoon selected ones",
                 },
                 {
-                    name = "Harpoon quick_menu",
+                    name = "Show Harpoon quick menu",
                     cmd = "lua require('harpoon').ui:toggle_quick_menu(harpoon:list())",
                     description = "Show Harpoon selected files",
                 },
