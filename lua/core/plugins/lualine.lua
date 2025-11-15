@@ -5,6 +5,12 @@ return {
         enabled = true,
         config = function ()
             require("lualine").setup({
+                options = {
+                    globalstatus = true,
+                    disabled_filetypes = {
+                        statusline = { "neo-tree" }
+                    },
+                },
                 sections = {
                     lualine_a = { { "mode", icon = '', } },
                     lualine_b = { "diff" },
