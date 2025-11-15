@@ -4,7 +4,7 @@ return {
         enabled = true,
         init = function ()
             require('virt-column').setup({
-                char = '|',
+                char = '',
                 virtcolumn = "120",
                 highlight = { fg = "#FFFFFF" },
             })
