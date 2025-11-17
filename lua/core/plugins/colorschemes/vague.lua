@@ -2,7 +2,7 @@ return {
     {
         "vague2k/vague.nvim",
         lazy = false,
-        enabled = true,
+        enabled = false,
         priority = 100,
         config = function ()
             require("vague").setup({

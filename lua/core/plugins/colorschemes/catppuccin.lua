@@ -2,7 +2,7 @@ return {
     {
         "catppuccin/nvim",
         lazy = false,
-        enabled = false,
+        enabled = true,
         priority = 100,
         name = "catppuccin",
         config = function ()

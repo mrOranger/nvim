@@ -136,6 +136,8 @@ return {
 
             vim.keymap.set("n", "<leader>p", builtin.buffers)
             vim.keymap.set("n", "<leader>P", run)
+            vim.keymap.set("n", "<leader>lg", builtin.live_grep)
+            vim.keymap.set("n", "<leader>f", builtin.current_buffer_fuzzy_find)
 
             vim.keymap.set("n", "<C-t>ff", builtin.find_files)
             vim.keymap.set("n", "<C-t>lg", builtin.live_grep)

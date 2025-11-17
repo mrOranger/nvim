@@ -53,6 +53,22 @@ return {
                     vim.cmd('write')
                 end
 
+                local current_buf = vim.api.nvim_get_current_buf()
+                local filetype = current_buf.filetype
+                local buftype = current_buf.buftype
+
+                if filetype ~= "neo-tree" 
+                    and buftype ~= "terminal" 
+                    and buftype ~= "nofile" 
+                    and vim.api.nvim_buf_is_valid(buf) 
+                    and vim.api.nvim_buf_is_loaded(buf) then
+
+                    if save and current_buf.modified and vim.api.nvim_buf_get_name(current_buf) ~= '' then
+                        vim.cmd('write')
+                    end
+                end
+
+
                 if #buffers <= 1 then
                     vim.cmd('enew')
                     if save then
@@ -88,15 +104,21 @@ return {
                     end
                 end
 
-                for _, buf in ipairs(buffers) do
-                    if save then
-                        vim.cmd('bdelete ' .. buf.bufnr)
-                    else
-                        vim.cmd('bdelete! ' .. buf.bufnr)
+                local current = vim.api.nvim_get_current_buf()
+
+                for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+                    local filetype = vim.bo[buf].filetype
+                    local buftype = vim.bo[buf].buftype
+
+                    if filetype ~= "neo-tree" 
+                        and buftype ~= "terminal" 
+                        and buftype ~= "nofile" 
+                        and vim.api.nvim_buf_is_valid(buf) 
+                        and vim.api.nvim_buf_is_loaded(buf) then
+
+                        vim.api.nvim_buf_delete(buf, { force = false })
                     end
                 end
-
-                vim.cmd('enew')
             end
 
             vim.keymap.set("n", "<Tab>", ":BufferLineCycleNext<CR>", { silent = true })

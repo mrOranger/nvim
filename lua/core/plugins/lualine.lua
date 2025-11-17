@@ -10,10 +10,18 @@ return {
                     disabled_filetypes = {
                         statusline = { "neo-tree" }
                     },
+                    component_separators = '',
+                    section_separators = { left = '', right = '' },
                 },
                 sections = {
-                    lualine_a = { { "mode", icon = '', } },
-                    lualine_b = { "diff" },
+                    lualine_a = { 
+                        { 
+                            "mode", 
+                            icon = '',
+                            separator = { right = '' }
+                        },
+                    },
+                    lualine_b = { "branch", "diff" },
                     lualine_c = { 
                         {
                             "filename",
