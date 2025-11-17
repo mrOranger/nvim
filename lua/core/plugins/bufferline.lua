@@ -13,7 +13,7 @@ return {
                         delay = 200,
                         reveal = { "close" },
                     },
-                    separator_style = "padded_slant",
+                    separator_style = "padded_slope",
                     offsets = {
                         {
                             filetype = "neo-tree",
@@ -26,6 +26,19 @@ return {
                     auto_toggle_bufferline = true,
                     enforce_regular_tabs = true,
                     themable = true,
+                },
+                highlights = {
+                    buffer_selected = {
+                        bg = 'none',
+                        bold = false,
+                        italic = false,
+                    },
+                    numbers_selected = {
+                        bg = 'none',
+                    },
+                    close_button_selected = {
+                        bg = 'none',
+                    },
                 }
             })
 
